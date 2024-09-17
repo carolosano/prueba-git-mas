@@ -1,0 +1,200 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Tipografías */
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Estilos generales */
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Encabezado */
+header {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #f8f9fa;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+header h4 {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* Navegación */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: #007BFF;
+}
+
+/* Sección 'Sobre Nosotros' */
+.about {
+    padding: 20px;
+}
+
+.about h2 {
+    width: 100%;
+    height: 300px;
+    background-image: url('/img/equipo-diseno-grafico-trabajando-oficina_1423-3537.jpg.avif');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+/* Texto */
+h3 {
+    margin-top: 20px;
+    font-size: 1.5rem;
+}
+
+p, li {
+    margin-top: 10px;
+    line-height: 1.8;
+}
+
+/* Listas */
+li {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+/* Sección 'Planes' */
+.planes {
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+.planes table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.planes th,
+.planes td {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.planes th {
+    background-color: #007BFF;
+    color: white;
+}
+
+/* Sección 'Contacto' */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+label {
+    font-weight: bold;
+}
+
+input, textarea, button {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Footer */
+footer {
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    margin-top: 40px;
+}
+
+footer .contenu-footer {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+footer .bloc {
+    flex: 1;
+    min-width: 200px;
+}
+
+footer h3 {
+    margin-bottom: 10px;
+}
+
+footer a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: white;
+}
+
+/* Copyright */
+footer .copyright {
+    margin-top: 20px;
+    font-size: 0.8rem;
+}
+
+/* Diseño Responsive */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about h2 {
+        height: 200px;
+        font-size: 1.5rem;
+    }
+
+    .planes table {
+        font-size: 0.9rem;
+    }
+}
