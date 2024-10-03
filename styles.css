@@ -113,13 +113,6 @@ li {
 }
 
 /* Sección 'Contacto' */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 600px;
-    margin: 0 auto;
-}
 
 label {
     font-weight: bold;
@@ -197,4 +190,15 @@ footer .copyright {
     .planes table {
         font-size: 0.9rem;
     }
+}
+
+iframe {
+    display: flex;
+    height: 50vh;
+    width: 100% !important;
+    margin-top: 40px;
+}
+
+.contenedor {
+    display: flex;
 }
