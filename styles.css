@@ -1,25 +1,25 @@
-/* Reset básico */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Tipografías */
+
 body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     color: #333;
 }
 
-/* Estilos generales */
+
 main {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Encabezado */
+
 header {
     text-align: center;
     padding: 20px 0;
@@ -37,7 +37,7 @@ header h4 {
     color: #666;
 }
 
-/* Navegación */
+
 nav ul {
     list-style: none;
     display: flex;
@@ -55,7 +55,7 @@ nav a:hover {
     color: #007BFF;
 }
 
-/* Sección 'Sobre Nosotros' */
+/* Seccin Sobre Nosotros */
 .about {
     padding: 20px;
 }
@@ -63,10 +63,9 @@ nav a:hover {
 .about h2 {
     width: 100%;
     height: 300px;
-    background-image: url('/img/equipo-diseno-grafico-trabajando-oficina_1423-3537.jpg.avif');
     background-size: cover;
     background-position: center;
-    color: white;
+    color: rgb(0, 0, 0);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -90,7 +89,7 @@ li {
     margin-left: 20px;
 }
 
-/* Sección 'Planes' */
+/* Secciin Planes */
 .planes {
     padding: 20px;
     background-color: #f0f0f0;
@@ -112,7 +111,7 @@ li {
     color: white;
 }
 
-/* Sección 'Contacto' */
+/* Seccin Contacto */
 
 label {
     font-weight: bold;
@@ -169,7 +168,7 @@ footer a:hover {
     color: white;
 }
 
-/* Copyright */
+
 footer .copyright {
     margin-top: 20px;
     font-size: 0.8rem;
@@ -201,4 +200,9 @@ iframe {
 
 .contenedor {
     display: flex;
+}
+
+#navbarNavAltMarkup {
+    align-items: center;
+    text-align: center;
 }
