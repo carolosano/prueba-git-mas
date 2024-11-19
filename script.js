@@ -1,105 +1,119 @@
-// ES
+document.getElementById("contact-form").addEventListener("submit", function(event) {
+    // Prevenir que el formulario realice la acción por defecto (refrescar la página)
+    event.preventDefault();
 
+    // Capturar los valores de los campos del formulario
+    const nombre = document.getElementById("first-name").value;
+    const apellido = document.getElementById("last-name").value;
+    const empresa = document.getElementById("company").value;
+    const mensaje = document.getElementById("message").value;
 
-let nombre = prompt("Ingrese su nombre por favor:")
-// alert("Bienvenidx " + nombre + " a nuestra página Web")
-
-
-let numero = prompt("Ingresa su edad: ")
-
-
-
-while (nombre == String) {
-    alert("Bienvenidx a nuestra página web " + nombre);
-    
- if (nombre != String) {
-    alert("Ingrese un nombre valido")
-}}
-
-function saludar(nombre, mensaje) {
-    alert(mensaje + nombre)
-}
-
-saludar(nombre, "que bueno que estes de vuelta ")
-
-
-// primera funcion como de filtro para elegir packs
-
-function elegirPack() {
-    // Solicito al usuario que elija un pack
-    var packSeleccionado = prompt("Elige un pack: 1. Branding, 2. Video, 3. Imágenes");
-
-    // valido la selección del usuario usando condicionales
-    if (packSeleccionado === "1") {
-        alert("Elegiste el Pack Branding.");
-        console.log("Pack seleccionado: Branding.");
-    } else if (packSeleccionado === "2") {
-        alert("Elegiste el Pack Video.");
-        console.log("Pack seleccionado: Video.");
-    } else if (packSeleccionado === "3") {
-        alert("Elegiste el Pack Imágenes.");
-        console.log("Pack seleccionado: Imágenes.");
-    } else {
-        alert("Opción no válida. Por favor elige una opción correcta.");
-        console.log("Selección no válida.");
-    }
-}
-
-// le doy funcionalidad al fomrulario de contacto
-
-
-
-
-// constructor cliente
-
-function Cliente(nombre, email) {
-    this.nombre = nombre;
-    this.email = email;
-
-    // Método que muestra la información del cliente
-    this.mostrarInfo = function() {
-        console.log("Cliente: " + this.nombre + ", Email: " + this.email);
+    // Crear un objeto con los datos del formulario
+    const datosContacto = {
+        nombre: nombre,
+        apellido: apellido,
+        empresa: empresa,
+        mensaje: mensaje
     };
-}
 
-// Constructor de Consulta
+    // Almacenar los datos en LocalStorage como JSON
+    localStorage.setItem("contacto", JSON.stringify(datosContacto));
 
-function Consulta(cliente, mensaje) {
-    this.cliente = cliente;
-    this.mensaje = mensaje;
+    // Mostrar el alert
+    alert("Su mensaje se ha enviado con éxito");
 
-    // Metodo para mostrar la consulta
-    this.mostrarConsulta = function() {
-        console.log("Consulta de " + this.cliente.nombre + ": " + this.mensaje);
-    };
-}
-
-// Func. para procesar el formulario y crear los objetos
-function procesarFormulario() {
-    // aca obtendria valores del formulario
-    var nombre = document.getElementById('nombre').value;
-    var email = document.getElementById('email').value;
-    var consultaTexto = document.getElementById('consulta').value;
-
-    // Validacion
-    if (nombre === "" || email === "" || consultaTexto === "") {
-        alert("Por favor, completa todos los campos.");
-        return;  // No continúa si faltan datos
-    }
-
-    // Crea un objeto Cliente
-    var cliente = new Cliente(nombre, email);
-    cliente.mostrarInfo();  // Mostrar info del cliente en consola
-
-    // Crea un objeto Consulta vinculado al cliente
-    var consulta = new Consulta(cliente, consultaTexto);
-    consulta.mostrarConsulta();  // Mostrar info de la consulta en consola
-
-    alert("Consulta enviada correctamente.");
-}
-
-// Asignar la función al botón de enviar
-document.getElementById('btn').addEventListener('click', function(event) {
-    event.preventDefault();  // Prevenir el envío del formulario
-    procesarFormulario();  // Procesar el formulario y crear objetos
+    // (Opcional) Resetear el formulario
+    document.getElementById("contact-form").reset();
 });
+
+
+//let numero = prompt("Ingresa su edad: ")
+
+
+//objetos para los packs
+
+//let packs = {
+   // nombre: "Gráfico",
+  //  precio: 200,
+//}
+
+class Producto {
+
+    
+
+    // Constructor
+    constructor(nombrePack, elementos, precio) {
+        this.nombrePack = nombrePack;
+        this.elementos = elementos;
+        this.precio = precio;
+    }
+    mostrarDetalles() {
+        console.log(`Pack: ${this.nombrePack}`);
+        console.log(`Incluye: ${this.elementos.join(", ")}`);
+        console.log(`Precio: $${this.precio}`);
+    }
+    
+}
+
+export default Producto
+const packGrafico = new Producto(
+    "Gráfico",
+    ["Diseño de Logotipo", "Tarjetas Personales", "Manual de Marca"],
+    150.00
+);
+
+const packPublicitario = new Producto(
+    "Publicitario",
+    ["Diseño de Flyer", "Post para Redes Sociales", "Banner Publicitario"],
+    200.00
+);
+
+packGrafico.mostrarDetalles();
+
+
+packPublicitario.mostrarDetalles();
+
+
+// Función para manejar la creación del pack
+function armarPack() {
+    const checkboxes = document.querySelectorAll('.form-check-input');
+    const seleccionados = [];
+  
+    checkboxes.forEach((checkbox, index) => {
+      if (checkbox.checked) {
+        seleccionados.push(`Opción ${index + 1}`);
+      }
+    });
+  
+    if (seleccionados.length > 0) {
+      const listaPacks = obtenerPacksDelStorage();
+      const nuevoPack = new PackAlternativo(`Pack${listaPacks.length + 1}`, seleccionados);
+      listaPacks.push(nuevoPack);
+      guardarPacksEnStorage(listaPacks);
+      alert(`¡Pack ${listaPacks.length} creado con éxito!`);
+    } else {
+      alert('Por favor selecciona al menos una opción para crear un pack.');
+    }
+  }
+  
+  // Asignar evento al botón "Armar Pack"
+  document.getElementById('botonArmarPack').addEventListener('click', armarPack);
+  
+  // Funciones relacionadas con LocalStorage
+  function obtenerPacksDelStorage() {
+    const packs = localStorage.getItem('packs');
+    return packs ? JSON.parse(packs) : [];
+  }
+  
+  function guardarPacksEnStorage(listaPacks) {
+    localStorage.setItem('packs', JSON.stringify(listaPacks));
+  }
+  
+  // Clase PackAlternativo
+  class PackAlternativo {
+    constructor(nombre, items) {
+      this.nombre = nombre;
+      this.items = items;
+    }
+  }
+  

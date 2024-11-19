@@ -1,224 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/*npx tailwindcss -i ./styles.css*/
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Importar la fuente Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+
+/* Estilo para el título */
+.tituloElegirPack {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 3.2rem; /* Tamaño grande */
+  text-align: center;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.04em; /* Reduce ligeramente el espacio entre letras */
 }
 
-
-body {
-    font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
-    color: #333;
+/* Contenedor principal para centrar */
+.elegirPack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
 }
 
-
-main {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+/* Contenedor de checkboxes */
+.checkbox-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Tres columnas */
+  gap: 0.5rem; /* Reducir el espaciado entre columnas */
+  justify-content: center; /* Centrar las columnas horizontalmente */
+  width: 100%; /* Asegurar que ocupe todo el ancho disponible */
+  max-width: 500px; /* Limitar el ancho del contenedor */
 }
 
-
-header {
-    text-align: center;
-    padding: 20px 0;
-    background-color: #f8f9fa;
-    margin-bottom: 20px;
+/* Estilo de cada checkbox */
+.form-check {
+  display: flex;
+  align-items: center;
 }
 
-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+.form-check-input {
+  margin-right: 0.5rem;
 }
 
-header h4 {
-    font-size: 1.2rem;
-    color: #666;
+.form-check-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #333; /* Color del texto */
 }
 
-
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+/* Estilo del botón "Armar Pack" */
+.boton-armar-pack {
+  background-color: #5046E6; /* Violeta */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
-nav a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-}
-
-nav a:hover {
-    color: #007BFF;
-}
-
-/* Seccin Sobre Nosotros */
-#about {
-    padding: 20px;
-}
-
-#about h2 {
-    width: 100%;
-    height: 300px;
-    background-size: cover;
-    background-position: center;
-    color: rgb(0, 0, 0);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-}
-
-/* Texto */
-h3 {
-    margin-top: 20px;
-    font-size: 1.5rem;
-}
-
-p, li {
-    margin-top: 10px;
-    line-height: 1.8;
-}
-
-/* Listas */
-li {
-    list-style-type: disc;
-    margin-left: 20px;
-}
-
-/* Secciin Planes */
-#planes {
-    padding: 20px;
-    background-color: #f0f0f0;
-}
-
-#planes table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-#planes th,
-#planes td {
-    border: 1px solid #ccc;
-    padding: 10px;
-}
-
-#planes th {
-    background-color: #007BFF;
-    color: white;
-}
-
-/* Seccin Contacto */
-
-label {
-    font-weight: bold;
-}
-
-input, textarea, button {
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-button {
-    background-color: #007BFF;
-    color: white;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Footer */
-footer {
-    padding: 20px;
-    background-color: #333;
-    color: white;
-    text-align: center;
-    margin-top: 40px;
-}
-
-.footer #contenu-footer {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.footer .bloc {
-    flex: 1;
-    min-width: 200px;
-}
-
-footer h3 {
-    margin-bottom: 10px;
-}
-
-footer a {
-    color: #ccc;
-    text-decoration: none;
-}
-
-footer a:hover {
-    color: white;
-}
-
-
-footer .copyright {
-    margin-top: 20px;
-    font-size: 0.8rem;
-}
-
-/* Diseño Responsive */
-@media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    #about h2 {
-        height: 200px;
-        font-size: 1.5rem;
-    }
-
-    #planes table {
-        font-size: 0.9rem;
-    }
-}
-
-iframe {
-    display: flex;
-    height: 50vh;
-    width: 100% !important;
-    margin-top: 40px;
-}
-
-.contenedor {
-    display: flex;
-}
-
-#navbarNavAltMarkup {
-    align-items: center;
-    text-align: center;
-}
-
-@media (max-width: 768px) {
-    main {
-        padding: 10px;
-    }
-    header h1 {
-        font-size: 2rem;
-    }
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-    }
-    .heroPrimero img {
-        height: 250px;
-    }
+/* Hover para el botón */
+.boton-armar-pack:hover {
+  background-color: #4F80FF; /* Violeta oscuro */
 }
