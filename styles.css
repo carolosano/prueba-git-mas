@@ -1,23 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/*npx tailwindcss -i ./styles.css*/
+/* para activar css tailwind ---> npx tailwindcss -i ./styles.css*/
 
-/* Importar la fuente Inter */
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
 
-/* Estilo para el título */
+/* título */
 .tituloElegirPack {
   font-family: 'Inter', sans-serif;
   font-weight: 600;
-  font-size: 3.2rem; /* Tamaño grande */
+  font-size: 3.2rem;
   text-align: center;
   margin-bottom: 1.5rem;
-  letter-spacing: -0.04em; /* Reduce ligeramente el espacio entre letras */
+  letter-spacing: -0.04em; 
 }
 
-/* Contenedor principal para centrar */
+/* Contenedor principal*/
 .elegirPack {
   display: flex;
   flex-direction: column;
@@ -29,11 +29,11 @@
 /* Contenedor de checkboxes */
 .checkbox-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Tres columnas */
-  gap: 0.5rem; /* Reducir el espaciado entre columnas */
-  justify-content: center; /* Centrar las columnas horizontalmente */
-  width: 100%; /* Asegurar que ocupe todo el ancho disponible */
-  max-width: 500px; /* Limitar el ancho del contenedor */
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 0.5rem; 
+  justify-content: center;
+  width: 100%; 
+  max-width: 500px; 
 }
 
 /* Estilo de cada checkbox */
@@ -49,12 +49,12 @@
 .form-check-label {
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
-  color: #333; /* Color del texto */
+  color: #333; 
 }
 
 /* Estilo del botón "Armar Pack" */
 .boton-armar-pack {
-  background-color: #5046E6; /* Violeta */
+  background-color: #5046E6; 
   color: white;
   border: none;
   padding: 10px 20px;
@@ -67,5 +67,5 @@
 
 /* Hover para el botón */
 .boton-armar-pack:hover {
-  background-color: #4F80FF; /* Violeta oscuro */
+  background-color: #4F80FF; 
 }
