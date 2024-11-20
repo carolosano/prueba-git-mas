@@ -29,42 +29,10 @@
 
 //-------------------------------------------------------------------------------------------------------- //
 
-// ---------> ACA ESTOY TRATANDO DE ARMAR LOS PACKS PARA PONER DESPUES EN EL CARRITO DE COMPRA <----------
-class Producto {
-
-    // CREO Q ACA ME FALTARIA DECLARAR LOS ATRIBUTOS NO? 
-    // constructor
-    constructor(nombrePack, elementos, precio) {
-        this.nombrePack = nombrePack;
-        this.elementos = elementos;
-        this.precio = precio;
-    }
-    mostrarDetalles() {
-        console.log(`Pack: ${this.nombrePack}`);
-        console.log(`Incluye: ${this.elementos.join(", ")}`);
-        console.log(`Precio: $${this.precio}`);
-    }
-    
-}
-
-// ---------> CREANDO LAS INSTANCIAS DE PRODUCTOS (LOS PACKS DE GRAFICO Y PUBLICITARIO) <----------
-export default Producto
-const packGrafico = new Producto(
-    "Gráfico",
-    ["Diseño de Logotipo", "Tarjetas Personales", "Manual de Marca"],
-    150.00
-);
-
-const packPublicitario = new Producto(
-    "Publicitario",
-    ["Diseño de Flyer", "Post para Redes Sociales", "Banner Publicitario"],
-    200.00
-);
-
-packGrafico.mostrarDetalles();
+import { Producto, packGrafico, packPublicitario } from "./Producto.js";
+import PackAlternativo from "./packAlternativo.js";
 
 
-packPublicitario.mostrarDetalles();
 
 //-------------------------------------------------------------------------------------------------------- //
 
@@ -105,15 +73,6 @@ packPublicitario.mostrarDetalles();
   //}
   
 //-------------------------------------------------------------------------------------------------------- //
-
-  // clase DEL "ARMA TU PROPIO PACK"
-  class PackAlternativo {
-    constructor(nombre, items) {
-      this.nombre = nombre;
-      this.items = items;
-    }
-  }
-
 
   // --------> SIMULACION DEL FORMULARIO. Lo hago mediante promts para no usar DOM   <---------
   function manejarFormulario() {
