@@ -32,7 +32,7 @@
 // ---------> ACA ESTOY TRATANDO DE ARMAR LOS PACKS PARA PONER DESPUES EN EL CARRITO DE COMPRA <----------
 class Producto {
 
-    // CREO Q ACA ME FALTARIA DECLARAR LOS STRIBUTOS NO? 
+    // CREO Q ACA ME FALTARIA DECLARAR LOS ATRIBUTOS NO? 
     // constructor
     constructor(nombrePack, elementos, precio) {
         this.nombrePack = nombrePack;
