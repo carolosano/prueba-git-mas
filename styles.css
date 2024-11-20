@@ -69,3 +69,92 @@
 .boton-armar-pack:hover {
   background-color: #4F80FF; 
 }
+
+/* Footer */
+footer {
+  padding: 20px;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.footer #contenu-footer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer .bloc {
+  flex: 1;
+  min-width: 200px;
+}
+
+footer h3 {
+  margin-bottom: 10px;
+}
+
+footer a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: white;
+}
+
+
+footer .copyright {
+  margin-top: 20px;
+  font-size: 0.8rem;
+}
+
+/* Diseño Responsive */
+@media (max-width: 768px) {
+  nav ul {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  #about h2 {
+      height: 200px;
+      font-size: 1.5rem;
+  }
+
+  #planes table {
+      font-size: 0.9rem;
+  }
+}
+
+iframe {
+  display: flex;
+  height: 50vh;
+  width: 100% !important;
+  margin-top: 40px;
+}
+
+.contenedor {
+  display: flex;
+}
+
+#navbarNavAltMarkup {
+  align-items: right;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  main {
+      padding: 10px;
+  }
+  header h1 {
+      font-size: 2rem;
+  }
+  nav ul {
+      flex-direction: column;
+      gap: 10px;
+  }
+  .heroPrimero img {
+      height: 250px;
+  }
+}
