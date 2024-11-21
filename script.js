@@ -1,3 +1,4 @@
+import { Producto } from "./Producto.js";
 
   const packGrafico = new Producto(
     "Gráfico",
@@ -10,6 +11,9 @@
     ["Diseño de Flyer", "Post para Redes Sociales", "Banner Publicitario"],
     200.0
   );
+
+packGrafico.mostrarDetalles();
+packPublicitario.mostrarDetalles();
 
 //-------------------------------------------------------------------------------------------------------- //
 
