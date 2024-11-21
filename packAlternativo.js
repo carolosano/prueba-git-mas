@@ -1,4 +1,4 @@
-// packAlternativo.js
+
 class PackAlternativo {
     constructor(nombre, items) {
       this.nombre = nombre;
@@ -6,6 +6,6 @@ class PackAlternativo {
     }
   }
   
-  // Exportamos la clase
+  // ExportO la clase
   export default PackAlternativo;
   
