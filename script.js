@@ -20,13 +20,13 @@ document.getElementById("contact-form").addEventListener("submit", function(even
         mensaje: mensaje
     };
 
-    // Almacenar los datos en LocalStorage como JSON
+    // se almacena los datos en localStorage como JSON
     localStorage.setItem("contacto", JSON.stringify(datosContacto));
 
-    // Mostrar el alert
+    // alert
     alert("Su mensaje se ha enviado con éxito");
 
-    // Resetear el formulario
+    // reseteo el formulario
     document.getElementById("contact-form").reset();
 });
 
@@ -47,39 +47,94 @@ packPublicitario.mostrarDetalles();
 
 //-------------------------------------------------------------------------------------------------------- //
 
-// funcion para manejar la creación del pack
-function armarPack() {
-    const checkboxes = document.querySelectorAll('.form-check-input');
-    const seleccionados = [];
-  
-    checkboxes.forEach((checkbox, index) => {
+
+export function armarPack() {
+  const checkboxes = document.querySelectorAll('.form-check-input');
+  const carrito = document.getElementById('carrito');
+  const precioTotalDisplay = document.getElementById('precioTotal');
+
+  let serviciosSeleccionados = [];
+  let precioTotal = 0;
+
+  checkboxes.forEach(checkbox => {
       if (checkbox.checked) {
-        seleccionados.push(`Opción ${index + 1}`);
+          const [servicio, precio] = checkbox.value.split('|');
+          serviciosSeleccionados.push(servicio);
+          precioTotal += parseFloat(precio);
       }
-    }
-    );
-  
-    if (seleccionados.length > 0) {
-      const listaPacks = obtenerPacksDelStorage();
-      const nuevoPack = new PackAlternativo(`Pack${listaPacks.length + 1}`, seleccionados);
-     listaPacks.push(nuevoPack);
-      guardarPacksEnStorage(listaPacks);
-      alert(`¡Pack ${listaPacks.length} creado con éxito!`);
-    } else {
-      alert('Por favor selecciona al menos una opción para crear un pack.');
-    }
+  });
+
+  // se crea un objeto del pack
+  const pack = {
+      servicios: serviciosSeleccionados,
+      precioTotal: precioTotal.toFixed(2)
+  };
+
+  // guardo el pack en el localStorage
+  localStorage.setItem('packArmado', JSON.stringify(pack));
+
+  // aca se actualiza el carrito en el DOM. aca compruebo si el array serviciosSeleccionados tiene al menos un servicio 
+  //y se genera dinámicamente una lista <ul> con elementos <li> que representan cada servicio seleccionado
+  //serviciosSeleccionados.map(...): mapea cada elemento del array serviciosSeleccionados (oseea cada servicio) a un <li>
+  //.join(''): une todos los elementos generados en una sola cadena sin separadores (esto evita que aparezcan comas entre los <li>)
+  if (serviciosSeleccionados.length > 0) {
+      carrito.innerHTML = `
+          <ul>
+              ${serviciosSeleccionados.map(servicio => `<li>${servicio}</li>`).join('')}
+          </ul>
+      `;
+      precioTotalDisplay.textContent = `Precio Total: $${precioTotal.toFixed(2)}`;
+  } else {
+      carrito.innerHTML = '<p>No hay servicios seleccionados.</p>';
+      precioTotalDisplay.textContent = 'Precio Total: $0';
   }
-  
-  //Asignar evento al botón "Armar Pack"
-  document.getElementById('botonArmarPack').addEventListener('click', armarPack);
-  
-  //funciones relacionadas con LocalStorage
-  function obtenerPacksDelStorage() {
-    const packs = localStorage.getItem('packs');
-    return packs ? JSON.parse(packs) : [];
+}
+const packGuardado = JSON.parse(localStorage.getItem('packArmado'));
+console.log(packGuardado);
+
+
+export function finalizarCompra() {
+  const carrito = document.getElementById('carrito');
+  const precioTotalDisplay = document.getElementById('precioTotal');
+
+  if (carrito.innerHTML.trim() === '' || precioTotalDisplay.textContent === 'Precio Total: $0') {
+      alert('Tu carrito está vacío. Por favor selecciona servicios.');
+  } else {
+      // obtengo los servicios seleccionados desde el dom
+      const checkboxes = document.querySelectorAll('.form-check-input');
+      let detalleServicios = [];
+      let precioTotal = 0;
+
+      checkboxes.forEach(checkbox => {
+          if (checkbox.checked) {
+              const [servicio, precio] = checkbox.value.split('|');
+              detalleServicios.push({
+                  nombre: servicio,
+                  precio: parseFloat(precio)
+              });
+              precioTotal += parseFloat(precio);
+          }
+      });
+
+      // creo el obj
+      const compra = {
+          servicios: detalleServicios,
+          precioTotal: precioTotal.toFixed(2)
+      };
+
+      // guardo la compra en el localStorage
+      localStorage.setItem('compraFinalizada', JSON.stringify(compra));
+
+      // confirmacion y reinicio del carrito
+      alert('¡Gracias por tu compra! Los detalles de tu pack han sido guardados.');
+      carrito.innerHTML = '<p>No hay servicios seleccionados.</p>';
+      precioTotalDisplay.textContent = 'Precio Total: $0';
   }
-  
-  function guardarPacksEnStorage(listaPacks) {
-    localStorage.setItem('packs', JSON.stringify(listaPacks));
-  }
-  
+}
+const compraFinalizada = JSON.parse(localStorage.getItem('compraFinalizada'));
+
+console.log(compraFinalizada);
+
+window.armarPack = armarPack;
+window.finalizarCompra = finalizarCompra;
+
