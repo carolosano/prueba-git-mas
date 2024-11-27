@@ -7,6 +7,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
 
+
 /* título */
 .tituloElegirPack {
   font-family: 'Inter', sans-serif;
@@ -158,3 +159,50 @@ iframe {
       height: 250px;
   }
 }
+
+
+
+
+#resultadoPack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+#carrito ul {
+  list-style: none; /* Elimina los estilos por defecto de la lista */
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 0.5rem; 
+  justify-content: center;
+  width: 100%; 
+  max-width: 500px; 
+}
+
+#carrito li {
+  margin: 5px 0; /* Espaciado entre ítems */
+  font-size: 16px; /* Ajusta el tamaño de la fuente */
+  
+
+}
+
+
+.btn-finalizar {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-finalizar:hover {
+  background-color: #218838;
+}
+
+
+
