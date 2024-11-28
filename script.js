@@ -45,6 +45,7 @@ document.getElementById("contact-form").addEventListener("submit", function(even
       icon: "success",
       confirmButtonText: "Aceptar",
     });
+    
 
     // reseteo el formulario
     document.getElementById("contact-form").reset();
@@ -167,3 +168,66 @@ function finalizarCompra() {
 }
 const compraFinalizada = JSON.parse(localStorage.getItem('compraFinalizada'));
 console.log(compraFinalizada);
+
+
+
+//-------------------------------------------------------------------------------------------------------- //// Obtener datos desde la API usando fetch
+
+
+// Seleccionamos los elementos del DOM
+const getDataButton = document.getElementById('getData');
+const createDataButton = document.getElementById('createData');
+const outputDiv = document.getElementById('output');
+
+// Endpoint base de la API
+const apiBaseUrl = 'https://6748dd015801f515359267a4.mockapi.io/c1/productos';
+
+// Función para mostrar datos en pantalla
+function displayData(data) {
+  outputDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+}
+
+// Obtener datos de la API
+getDataButton.addEventListener('click', () => {
+  fetch(apiBaseUrl)
+    .then(response => {
+      if (!response.ok) throw new Error('Error al obtener los datos');
+      return response.json();
+    })
+    .then(data => {
+      console.log('Datos obtenidos:', data);
+      displayData(data); // Muestra los datos en el div
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      outputDiv.innerHTML = `Error: ${error.message}`;
+    });
+});
+
+// Crear nuevos datos en la API
+createDataButton.addEventListener('click', () => {
+  const newUser = {
+    name: 'Nuevo Usuario',
+    email: 'nuevo.usuario@example.com'
+  };
+
+  fetch(apiBaseUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newUser)
+  })
+    .then(response => {
+      if (!response.ok) throw new Error('Error al crear el recurso');
+      return response.json();
+    })
+    .then(data => {
+      console.log('Usuario creado:', data);
+      outputDiv.innerHTML = 'Usuario creado con éxito';
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      outputDiv.innerHTML = `Error: ${error.message}`;
+    });
+});
