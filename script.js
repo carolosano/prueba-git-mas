@@ -2,6 +2,8 @@ import { Producto } from "./Producto.js";
 import PackAlternativo from "./packAlternativo.js";
 
 
+
+
 document.getElementById("contact-form").addEventListener("submit", function(event) {
     // prevenir que el formulario realice la acción por defecto (refrescar la página x ej)
     event.preventDefault();
@@ -24,7 +26,14 @@ document.getElementById("contact-form").addEventListener("submit", function(even
     localStorage.setItem("contacto", JSON.stringify(datosContacto));
 
     // alert
-    alert("Su mensaje se ha enviado con éxito");
+    
+    console.log("Formulario enviado, mostrando alerta");
+    Swal.fire({
+      title: "¡Mensaje enviado!",
+      text: "Tu mensaje se ha enviado con éxito.",
+      icon: "success",
+      confirmButtonText: "Aceptar",
+    });
 
     // reseteo el formulario
     document.getElementById("contact-form").reset();
@@ -98,7 +107,13 @@ export function finalizarCompra() {
   const precioTotalDisplay = document.getElementById('precioTotal');
 
   if (carrito.innerHTML.trim() === '' || precioTotalDisplay.textContent === 'Precio Total: $0') {
-      alert('Tu carrito está vacío. Por favor selecciona servicios.');
+      
+      Swal.fire({
+        title: 'Error',
+        text: 'Tu carrito está vacío. Por favor selecciona servicios.',
+        icon: 'warning',
+        confirmButtonText: 'Aceptar'
+      });
   } else {
       // obtengo los servicios seleccionados desde el dom
       const checkboxes = document.querySelectorAll('.form-check-input');
@@ -126,7 +141,12 @@ export function finalizarCompra() {
       localStorage.setItem('compraFinalizada', JSON.stringify(compra));
 
       // confirmacion y reinicio del carrito
-      alert('¡Gracias por tu compra! Los detalles de tu pack han sido guardados.');
+      Swal.fire({
+        title: '¡Compra Finalizada!',
+        text: '¡Gracias por tu compra! Los detalles de tu pack han sido guardados.',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+      });
       carrito.innerHTML = '<p>No hay servicios seleccionados.</p>';
       precioTotalDisplay.textContent = 'Precio Total: $0';
   }
