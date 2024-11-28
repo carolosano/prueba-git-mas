@@ -74,10 +74,6 @@ const botonFinalizarCompra = document.getElementById("finalizarCompra");
 botonArmarPack.addEventListener("click", armarPack);
 botonFinalizarCompra.addEventListener("click", finalizarCompra);
 
-// saco estos
-//document.getElementById("botonArmarPack").addEventListener("click", armarPack);
-//document.getElementById("finalizarCompra").addEventListener("click", finalizarCompra);
-
 
 function armarPack() {
   const checkboxes = document.querySelectorAll('.form-check-input');
