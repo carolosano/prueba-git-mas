@@ -67,16 +67,16 @@ packPublicitario.mostrarDetalles();
 
 //-------------------------------------------------------------------------------------------------------- //
 
+//dejo estos
 const botonArmarPack = document.getElementById("botonArmarPack");
 const botonFinalizarCompra = document.getElementById("finalizarCompra");
-
 
 botonArmarPack.addEventListener("click", armarPack);
 botonFinalizarCompra.addEventListener("click", finalizarCompra);
 
-// Vincular los eventos con los botones
-document.getElementById("botonArmarPack").addEventListener("click", armarPack);
-document.getElementById("finalizarCompra").addEventListener("click", finalizarCompra);
+// saco estos
+//document.getElementById("botonArmarPack").addEventListener("click", armarPack);
+//document.getElementById("finalizarCompra").addEventListener("click", finalizarCompra);
 
 
 function armarPack() {
