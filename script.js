@@ -14,6 +14,17 @@ document.getElementById("contact-form").addEventListener("submit", function(even
     const empresa = document.getElementById("company").value;
     const mensaje = document.getElementById("message").value;
 
+    // Validar si los campos están vacíos
+    if (!nombre || !apellido || !empresa || !mensaje) {
+      Swal.fire({
+        title: "Error",
+        text: "Por favor, completa todos los campos antes de enviar su consulta.",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
+      return; // Detener la ejecución si hay campos vacíos
+    }
+
     //objeto con los datos del formulario
     const datosContacto = {
         nombre: nombre,
@@ -57,7 +68,7 @@ packPublicitario.mostrarDetalles();
 //-------------------------------------------------------------------------------------------------------- //
 
 
-export function armarPack() {
+function armarPack() {
   const checkboxes = document.querySelectorAll('.form-check-input');
   const carrito = document.getElementById('carrito');
   const precioTotalDisplay = document.getElementById('precioTotal');
@@ -72,37 +83,33 @@ export function armarPack() {
           precioTotal += parseFloat(precio);
       }
   });
+  // ahi uso la clase PackAlternativo
+  const pack = new PackAlternativo('Pack Personalizado', serviciosSeleccionados);
 
-  // se crea un objeto del pack
-  const pack = {
-      servicios: serviciosSeleccionados,
-      precioTotal: precioTotal.toFixed(2)
-  };
+  // calculo precio total en un metodo en la clase packAlternativo
+  pack.precioTotal = precioTotal.toFixed(2);
 
   // guardo el pack en el localStorage
   localStorage.setItem('packArmado', JSON.stringify(pack));
 
   // aca se actualiza el carrito en el DOM. aca compruebo si el array serviciosSeleccionados tiene al menos un servicio 
-  //y se genera dinámicamente una lista <ul> con elementos <li> que representan cada servicio seleccionado
-  //serviciosSeleccionados.map(...): mapea cada elemento del array serviciosSeleccionados (oseea cada servicio) a un <li>
-  //.join(''): une todos los elementos generados en una sola cadena sin separadores (esto evita que aparezcan comas entre los <li>)
   if (serviciosSeleccionados.length > 0) {
-      carrito.innerHTML = `
-          <ul>
-              ${serviciosSeleccionados.map(servicio => `<li>${servicio}</li>`).join('')}
-          </ul>
-      `;
-      precioTotalDisplay.textContent = `Precio Total: $${precioTotal.toFixed(2)}`;
+    carrito.innerHTML = `
+      <ul>
+        ${serviciosSeleccionados.map(servicio => `<li>${servicio}</li>`).join('')}
+      </ul>
+    `;
+    precioTotalDisplay.textContent = `Precio Total: $${pack.precioTotal}`;
   } else {
-      carrito.innerHTML = '<p>No hay servicios seleccionados.</p>';
-      precioTotalDisplay.textContent = 'Precio Total: $0';
+    carrito.innerHTML = '<p>No hay servicios seleccionados.</p>';
+    precioTotalDisplay.textContent = 'Precio Total: $0';
   }
 }
 const packGuardado = JSON.parse(localStorage.getItem('packArmado'));
 console.log(packGuardado);
 
 
-export function finalizarCompra() {
+function finalizarCompra() {
   const carrito = document.getElementById('carrito');
   const precioTotalDisplay = document.getElementById('precioTotal');
 
